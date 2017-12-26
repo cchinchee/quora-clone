@@ -1,0 +1,15 @@
+<% @answer.each do |a|%>
+	<div>
+		<p>Answer: <%= a.description%></p>
+		<p>Posted on: <%= a.created_at%></p>
+		<p>Question's title: <%= a.question.description%></p>
+	</div>
+	<br>		
+<% end %>
+
+
+
+<form action="/users/<%= current_user.id %>" >
+	<input type ="submit" value="Back">
+</form>      
+

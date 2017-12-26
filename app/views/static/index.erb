@@ -1,2 +1,33 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+
+	<div id="login_page">
+		<header id="login_page_logo">
+			<img src="/img/quora_word.png" alt="quora_word">
+		</header>			
+
+		<section>
+			
+			<form id="signUpForm" action="/sign_up" method="post">
+				<h4>Sign Up</h4>
+				<input type="text" name="name" placeholder="Username"><br>
+				<input type="text" name="email" placeholder="Email">
+				<br>
+				<input type="password" name="password" placeholder="Password"><br>
+				<input id="signUpButton" type="submit" value="Sign Up">
+				
+			</form>
+
+
+			<%=	@message %>
+
+			<form action="/users" method="post">
+				<h4>Login</h4>
+				<input type="text" name="email" placeholder="Email"><br>
+				<input type="password" name="password" placeholder="Password">
+				<br>
+				<input type="submit" value="Login">
+
+			</form>
+		</section>
+		<section></section>	
+		<footer></footer>
+	</div>

@@ -1,0 +1,18 @@
+
+
+<div>
+	<p>Question: <%= @answer.question.description %></p>
+
+	
+	<p>Answer: <%= @answer.description %></p>
+	
+	<div>
+		<form action='/answers/<%= @answer.id %>' method="post">
+			<p>Answer: </p>
+			<textarea rows='10', cols='50' name="description" ><%= @answer.description%></textarea><br>
+			<input type="submit" value="Update">
+		</form>	
+	</div>
+
+</div>
+

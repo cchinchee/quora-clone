@@ -1,0 +1,16 @@
+<div>
+	<h1>Question</h1>
+	<p>Title: <%= @question.title %></p>
+	<p>Question: <%= @question.description %></p>
+	
+	<div>
+		<form action='/questions/<%= @question.id %>' method="post">
+			<p>Title: </p>
+			<input type="text" name="title" value="<%= @question.title %>"><br>
+			<p>Question: </p>
+			<textarea rows='10', cols='50' name="description" ><%= @question.description%></textarea><br>
+			<input type="submit" value="Update">
+		</form>	
+	</div>
+
+</div>

@@ -1,0 +1,80 @@
+
+
+<div>
+	<div>
+		<h1>Question</h1>
+		<p>Title: <%= @question.title %></p>
+		<p>Question: <%= @question.description %></p>
+		<p>posted by: <%= @question.user.name %></p>
+		<p>posted on: <%= @question.created_at %></p>
+		
+
+		<% if current_user.id == @question.user_id %>
+			<div>
+				<form action='/questions/<%= @question.id %>/edit'>
+					<input type ="submit" value="Edit">
+				</form>
+
+				<form action='/questions/<%= @question.id %>/destroy' method="post">
+					<input type ="submit" value="Delete">
+				</form>    
+			</div>
+		<% end %>
+
+	</div>
+	
+	<% if @question.answers.empty? %>
+		<p>No answer posted.</p>
+	<% else%>
+		<div>
+			<h1>Answer</h1>
+		
+			<div>
+				<% @question.answers.each do |a|%>
+				
+					<p><%= a.description%></p>
+					<p>posted by: <%= a.user.name %></p>
+					<p>posted on: <%= a.created_at%></p>
+					<br>
+ 					
+					<% @votes=Vote.find_by(answer_id: a.id, user_id: current_user.id)%>
+					<% if @votes.nil?%>
+						<form id="like_button" action="/answers/<%= a.id%>/votes" method="post">
+							<input type="hidden" name="count" value=1>
+							<input type="submit" value="like">
+						</form>
+					<% else %>	
+						<form action="/<%= a.id%>/votes/destroy" method="post">
+							
+							<input type="submit" value="Unlike">
+						</form>
+					<% end %>	
+						
+						<p><%= @votes.count%> likes!</p><p id='result'></p>
+					
+					<% if current_user.id == a.user_id %>
+						
+						<form action='/answers/<%= a.id %>/edit'>
+							<input type ="submit" value="Edit">
+						</form>
+						<br>
+						<form action='/answers/<%= a.id %>/destroy' method="post">
+							<input type ="submit" value="Delete">
+						</form>
+					<% end %>
+		
+					<hr>
+				<% end %>
+			</div>
+		</div>	
+	<% end %>
+
+		<div>
+			<form action='/questions/<%= @question.id %>/answers' method="post">
+				<textarea rows='10', cols='50' name="description" placeholder="What is your answer?"></textarea>
+				<br>
+				<input type="submit" value="post">
+			</form>
+		</div>
+</div>
+

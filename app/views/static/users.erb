@@ -1,0 +1,41 @@
+
+<a href="/users/<%=current_user.id%>">Home</a>
+
+<p>Welcome, This is Quora.</p>
+
+<p>details</p>
+
+<p>name: <%= "#{@user.name}" %> </p>
+<p>email: <%= "#{@user.email}" %> </p>
+
+
+<form action="/users/<%=@user.id%>" method="get">
+	Look for your friend
+	<input type="text" name="name" placeholder="What is your friend's name?">
+	<input type="submit" value="Search">
+
+</form>
+
+
+<% if @search == nil %>
+
+<%=	@message %>
+
+<% end %>
+
+<br>
+
+<a href="/users/<%= @user.id %>/questions">Click to see all <%= "#{@user.name}"+ "'s" %> questions.</a>
+<br><br>
+<% if current_user.id == @user.id %>
+
+	<a href='/question/new'>Click here to ask question.</a><br>
+	<br>
+	<a href='/users/<%= @user.id %>/answers'>Click here to see all your answers.</a><br>
+	<br>
+	<form action = "/sign_out" method="post">
+		<input type="submit" value="Log out">
+	</form>
+
+
+<% end %>
